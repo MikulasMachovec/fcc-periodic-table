@@ -12,11 +12,15 @@ else
   ATOMIC_NUMBER=$($PSQL "SELECT atomic_number FROM elements WHERE atomic_number=$1" )
   else
   # $1 is a text
-  ATOMIC_NUMBER=$($PSQL "SELECT atomic_number FROM properties WHERE name='$1' OR symbol='$1' " )
+  ATOMIC_NUMBER=$($PSQL "SELECT atomic_number FROM elements INNER JOIN properties USING(atomic_number) WHERE name='$1' OR symbol='$1' " )
   fi
-  # find name
-  # find symbol
-  # find boiling
+  echo $ATOMIC_NUMBER
+  # get name
+  #NAME=$($PSQL "SELECT FROM WHERE atomic")
+  # get symbol
+  # get boiling_point
+  # get melting_point
+  # get type
 
 
 fi
